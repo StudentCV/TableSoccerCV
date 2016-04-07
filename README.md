@@ -23,9 +23,9 @@ Obviously there is plenty of work to do and probably you have even more **great*
   - ball prediction for a faster ball detection
   - Web-based user interface with a responsive design to be usable on any device with Bluetooth or wifi 
 
-TableSoccerOpenCV is hopefully just the beginning of some great *Open Source* table soccer video analysis projects. I hope you find my code useful!
+TableSoccerCV is hopefully just the beginning of some great *Open Source* table soccer video analysis projects. I hope you find my code useful!
 Cheers,
-Aerotw
+StudentCV
 
 ### Version
 0.1 - PreRelease
@@ -43,7 +43,7 @@ You will need the following packages for python to get the code working:
 
 Want to contribute? Great!
 
-The code itself is documented within the source code as much as possible. I'll also provide a short coding manual asop.
+The code itself is documented within the source code as much as possible. I'll also provide a short coding manual asap.
 
 Feel free to add some great functionalities!
 
