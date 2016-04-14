@@ -20,40 +20,47 @@ class ImageSource:
     a camera
     """
     
-    #cap = cv2.VideoCapture(r'.\Video.avi')
-    cap = cv2.VideoCapture(r'C:\Users\lzuber\Desktop\TableSoccer2016\PylonTableSoccer\Video.avi')
+    live = 0
+
+    #cap = cv2.VideoCapture(r'../Video.avi')
     grab_status = False
     
     frame_count = 0
     frame_rate = 0
 
     def init(self):  # TODO: init or __init__?
-        return
+        
+        if (self.live == 1):
 
-        self.icam = py.InstantCamera(py.TlFactory.GetInstance().CreateFirstDevice())
+            self.icam = py.InstantCamera(py.TlFactory.GetInstance().CreateFirstDevice())
 
-        self.icam.Close()
+            self.icam.Close()
 
-        self.icam.RegisterConfiguration(
-            py.AcquireContinuousConfiguration(),
-            py.RegistrationMode_ReplaceAll,
-            py.Cleanup_Delete
-        )
+            self.icam.RegisterConfiguration(
+                py.AcquireContinuousConfiguration(),
+                py.RegistrationMode_ReplaceAll,
+                py.Cleanup_Delete
+            )
 
-        self.icam.Open()
+            self.icam.Open()
 
-        self.icam.PixelFormat = "RGB8"
+            
+            self.icam.PixelFormat = "RGB8"
+            self.icam.MaxNumBuffer = 50
+            #self.icam.MaxNumBuffer = 2000
 
-        self.icam.MaxNumBuffer = 2000
-
-        pass
+            pass
+        else:
+            self.cap = cv2.VideoCapture('video.avi')
 
     def start_grab(self):
 
-        self.grab_status = True
-        return True
+        if(self.live != 1):
 
-        if self.icam:
+            self.grab_status = True
+            #return True
+
+        elif self.icam:
             self.icam.StartGrabbing(py.GrabStrategy_LatestImages)
             self.grab_status = True
             return True
@@ -63,9 +70,8 @@ class ImageSource:
 
     def get_newest_frame(self):
 
-        live = 0
 
-        if live == 1:
+        if self.live == 1:
             if self.grab_status:
 
                 with self.icam.RetrieveResult(200, py.TimeoutHandling_Return) as result:
@@ -78,16 +84,16 @@ class ImageSource:
             else:
                 raise Exception('Camera not Grabbing')
         else:
-            if self.cap.isOpened():
-
+            if self.cap.isOpened() or True:
+                
                 ret, frame = self.cap.read()
-                # cv2.imshow('Soccer', cv2.cvtColor(frame,cv2.COLOR_HSV2BGR))
-                cv2.imshow('Soccer', frame)
-
+ 
                 self.frame_count = self.frame_count + 1
                 self.__calc_frametime(time.time())
+                
                 return cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
             else:
+                print('gooaaaaa')
                 self.cap.release()
                 cv2.destroyAllWindows()
 
@@ -124,4 +130,4 @@ class ImageSource:
             self.frame_rate = 1 / period
             self.frametime = period
 
-            # print(self.frame_rate)
+            print(self.frame_rate)
