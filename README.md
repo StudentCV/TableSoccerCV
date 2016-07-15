@@ -35,8 +35,8 @@ StudentCV
 You will need the following packages for python to get the code working:
 * Python 3.4
 * OpenCV 3.0
-* PyPylon 1.0.5 (Get it <a href="https://github.com/StudentCV/PyPylonForARMv7">here</a>)
-* Numpy
+* PyPylon 1.0.5 Get it [here](https://github.com/StudentCV/PyPylon)
+* NumPy
 * Matplotlib
 
 ### Development
