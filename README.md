@@ -1,4 +1,6 @@
 # TableSoccerCV
+**If you have any questions regarding this project please checkout [imaginghub.com](http://imaginghub.com/)!** 
+
 Table Soccer Video Analysis with OpenCV in Python - Basler dart / pulse Camera connected with PyPylon
 
 During my own websearch couple of weeks ago I found some impressive demonstrations of video analysis setups for table soccer matches. But sadly none of those mostly university groups have published their code.
